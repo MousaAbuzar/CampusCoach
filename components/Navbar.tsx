@@ -1,6 +1,7 @@
 import Link from "next/link";
 import NavAuthButton from "./NavAuthButton";
 import CartButton from "./CartButton";
+import AboutButton from "./Aboutbutton";
 
 
 
@@ -8,7 +9,7 @@ import CartButton from "./CartButton";
 export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full bg-transparent">
-      <div className="w-full px-4 pt-4">
+      <div className="w-full px-4 pt-4 ">
         <div className="flex items-center justify-between rounded-2xl px-5 py-3 text-emerald-50 shadow-sm" style={{ backgroundColor: "var(--primary)" }}>
           <Link href="/" className="text-base font-semibold tracking-tight">
             Campus Coach
@@ -25,6 +26,7 @@ export default function Navbar() {
                 About
                 </Link>
             </section>*/}
+            <AboutButton />
             <Link
               href="/scholarships"
               className="rounded-full bg-emerald-100 px-4 py-2 font-medium text-emerald-950" style={{background: "var(--accent)"}}
@@ -34,6 +36,7 @@ export default function Navbar() {
 
            <CartButton />
            <NavAuthButton />
+          
 
 
 

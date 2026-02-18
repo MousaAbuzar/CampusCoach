@@ -31,7 +31,6 @@ export default function CartButton() {
       href={href}
       aria-label="Saved scholarships"
       className="rounded-full px-3 py-2 text-sm font-medium text-emerald-950 flex items-center gap-2" style={{backgroundColor: "var(--accent"}} >
-      {/* simple cart icon (no extra library needed) */}
       <span aria-hidden="true" >Cart</span>
       {!loading && signedIn ? "Saved" : ""}
     </Link>
