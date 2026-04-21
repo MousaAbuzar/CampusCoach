@@ -26,6 +26,7 @@ body {
 }
 :root {
   --background: #FAF8F2; /* uofa surface */
+  --foreground: #0a0a0a;
   --surface: #FFFFFF;
   --text: #053B28;       /* uofa dark */
   --text-muted: #2f5a45; /* optional muted */
