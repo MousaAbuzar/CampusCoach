@@ -3,19 +3,19 @@ import type { MetadataRoute } from "next";
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://campus-coach-q1rf.vercel.app";
 
-  const routes = [
+  const publicRoutes = [
     "/",
     "/scholarships",
-    "/AboutMe",
-    "/auth",
-    "/contact",
     "/faqs",
-    "/saved",
+    "/contact",
+    "/AboutMe",
     "/vision",
   ];
 
-  return routes.map((path) => ({
+  return publicRoutes.map((path) => ({
     url: `${baseUrl}${path}`,
     lastModified: new Date(),
   }));
 }
+
+

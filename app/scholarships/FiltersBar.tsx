@@ -54,20 +54,20 @@ const maxLessThanMin =
   }
 
   return (
-    <div className="flex flex-col gap-3 md:flex-row md:items-end">
+    <div className="flex flex-col gap-3">
       <form onSubmit={onSearchSubmit} className="flex gap-2">
         <input
-          className="border rounded px-3 py-2 w-72"
+          className="border rounded px-3 py-2 flex-1 min-w-0"
           placeholder="Search title…"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <button className="border rounded px-3 py-2">Search</button>
+        <button className="border rounded px-3 py-2 shrink-0">Search</button>
       </form>
 
-      <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2">
         <select
-          className="border rounded px-3 py-2"
+          className="border rounded px-3 py-2 flex-1 min-w-30"
           value={source}
           onChange={(e) => updateParam("source", e.target.value)}
         >
@@ -80,7 +80,7 @@ const maxLessThanMin =
         </select>
 
         <select
-          className="border rounded px-3 py-2"
+          className="border rounded px-3 py-2 flex-1 min-w-30"
           value={level}
           onChange={(e) => updateParam("level", e.target.value)}
         >
@@ -92,28 +92,28 @@ const maxLessThanMin =
           ))}
         </select>
 
-          <input
-  className="border rounded px-3 py-2 w-28"
-  placeholder="Min $"
-  value={minText}
-  onChange={(e) => setMinText(e.target.value)}
-  onBlur={() => updateParam("min", minText.trim())}
-/>
+        <input
+          className="border rounded px-3 py-2 w-24"
+          placeholder="Min $"
+          value={minText}
+          onChange={(e) => setMinText(e.target.value)}
+          onBlur={() => updateParam("min", minText.trim())}
+        />
 
-<input
-  className="border rounded px-3 py-2 w-28"
-  placeholder="Max $"
-  value={maxText}
-  onChange={(e) => setMaxText(e.target.value)}
-  onBlur={() => updateParam("max", maxText.trim())}
-/>
-{maxLessThanMin && (
-  <p className="text-sm text-red-600">
-    Max amount can’t be less than Min amount.
-  </p>
-)}
-
+        <input
+          className="border rounded px-3 py-2 w-24"
+          placeholder="Max $"
+          value={maxText}
+          onChange={(e) => setMaxText(e.target.value)}
+          onBlur={() => updateParam("max", maxText.trim())}
+        />
       </div>
+
+      {maxLessThanMin && (
+        <p className="text-sm text-red-600">
+          Max amount can’t be less than Min amount.
+        </p>
+      )}
     </div>
   );
 }

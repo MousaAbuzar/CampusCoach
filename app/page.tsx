@@ -9,7 +9,7 @@ export default function Home() {
       {/* HERO (full-width background, wide container) */}
       <section className="w-full" style={{backgroundColor: "var(--background)"}}>
         <div className="mx-auto w-full  px-6 sm:px-10 lg:px-16 pt-10 sm:pt-14 pb-12">
-          <div className="grid items-center gap-10 lg:grid-cols-2">
+          <div className="grid items-center gap-6 lg:gap-10 lg:grid-cols-2">
             {/* Left */}
             <div className="max-w-2xl">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight">
@@ -37,7 +37,7 @@ export default function Home() {
             <div className="w-full">
               <div>
                 <div className="aspect-[4/3] w-full grid place-items-center ">
-                  <img src="./gifs/animated.gif" alt="Coin" className="w-100 h-87 object-contain"/>
+                  <img src="./gifs/animated.gif" alt="Coin" className="w-full max-w-sm h-auto object-contain"/>
                   {/*<img src="./gifs/coinrotate.gif" alt="Coin rotating" className="w-87 h-100 object-contain"/>*/}
                 </div>
               </div>
@@ -108,30 +108,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ABOUT (same wide container) */}
-      <section id="about" className="w-full">
-        <div className="mx-auto w-full max-w-[1400px] px-6 sm:px-10 lg:px-16 pb-16">
-          <div className="rounded-3xl bg-white/70 p-8 shadow-sm">
-            <h2 className="text-2xl sm:text-3xl font-semibold">About</h2>
-            <p className="mt-3 text-sm sm:text-base opacity-80">
-              Campus Scholarships is a student-built tool to make funding easier to find.
-              Browse opportunities, compare eligibility, and keep your deadlines in one
-              place.
-            </p>
-
-            <div className="mt-6">
-              <Link
-                href="/scholarships"
-                className="inline-flex rounded-full bg-emerald-950 px-5 py-3 text-sm font-medium text-emerald-50 hover:opacity-90 transition"
-              >
-                Start browsing
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FOOTER (same wide container) */}
+{/* FOOTER (same wide container) */}
       <footer className="w-full">
         <div className="mx-auto w-full max-w-[1400px] px-6 sm:px-10 lg:px-16 pb-10 text-xs opacity-70">
           © {new Date().getFullYear()} Campus Scholarships
