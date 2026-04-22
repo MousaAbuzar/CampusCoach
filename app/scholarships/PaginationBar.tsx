@@ -16,19 +16,19 @@ export default function PaginationBar({ page, totalPages}: {page: number; totalP
     return (
     <div className="flex items-center justify-between py-4">
       <button
-        className="border rounded px-3 py-2 disabled:opacity-50"
+        className="btn-outline px-4 py-2 text-sm disabled:opacity-30"
         disabled={page <= 1}
         onClick={() => go(page - 1)}
       >
         Prev
       </button>
 
-      <div className="text-sm opacity-80">
+      <div className="text-sm" style={{ color: "var(--text-muted)" }}>
         Page {page} of {totalPages}
       </div>
 
       <button
-        className="border rounded px-3 py-2 disabled:opacity-50"
+        className="btn-outline px-4 py-2 text-sm disabled:opacity-30"
         disabled={page >= totalPages}
         onClick={() => go(page + 1)}
       >

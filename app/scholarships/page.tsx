@@ -88,7 +88,7 @@ const levels = Array.from(
 
   
   return (
-    <div className="p-4 space-y-4">
+    <div className="p-4 space-y-4 min-h-screen" style={{ backgroundColor: "var(--background)" }}>
       <FiltersBar sources={sources} levels={levels} />
       <PaginationBar page={page} totalPages={totalPages} />
       <div className="space-y-4">

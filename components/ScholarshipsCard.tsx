@@ -32,21 +32,18 @@ export default function ScholarshipsCard(props: {object : any}) {
     return (
     
         
-    <div className="w-full rounded-2xl border border-zinc-200 bg-white p-5 shadow-sm">
-
+    <div className="dark-card w-full p-5 transition-shadow duration-200 hover:shadow-[0_0_20px_rgba(124,58,237,0.15)]">
 
         <div className="flex items-start justify-between gap-2">
-          <h2 className="mb-3 text-lg sm:text-xl font-semibold">{props.object.title}</h2>
-  <SaveButton scholarshipId={props.object.id} />
-</div>
+          <h2 className="mb-3 text-lg sm:text-xl font-semibold text-white">{props.object.title}</h2>
+          <SaveButton scholarshipId={props.object.id} />
+        </div>
 
-
-        <div className="space-y-1 text-sm text-zinc-700">
-            <p><span className="font-medium text-zinc-900">provider:</span> {props.object.provider}</p>
-            <p><span className="font-medium text-zinc-900">amount:</span>{" "} {formatMoneyRange(props.object.valueMin, props.object.valueMax, props.object.amountText)}</p> 
-            <p><span className="font-medium text-zinc-900">deadline:</span> {props.object.deadline}</p>
-            <p><span className="font-medium text-zinc-900">tags:</span> {props.object.tags?.join(" • ") ?? "N/A"}</p>
-
+        <div className="space-y-1 text-sm" style={{ color: "var(--text-muted)" }}>
+            <p><span className="font-medium text-slate-300">provider:</span> {props.object.provider}</p>
+            <p><span className="font-medium text-slate-300">amount:</span>{" "} {formatMoneyRange(props.object.valueMin, props.object.valueMax, props.object.amountText)}</p>
+            <p><span className="font-medium text-slate-300">deadline:</span> {props.object.deadline}</p>
+            <p><span className="font-medium text-slate-300">tags:</span> {props.object.tags?.join(" • ") ?? "N/A"}</p>
         </div>
     </div>
     )

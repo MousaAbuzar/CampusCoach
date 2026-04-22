@@ -27,8 +27,7 @@ export default function AboutButton() {
   return (
     <div className="relative inline-block" ref={ref}>
       <button
-        className="rounded-full px-5 py-2 text-emerald-950"
-        style={{ backgroundColor: "var(--accent)" }}
+        className="btn-outline px-5 py-2 text-sm font-medium"
         onClick={() => setOpen(!open)}
       >
         About

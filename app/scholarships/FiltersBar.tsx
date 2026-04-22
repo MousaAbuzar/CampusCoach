@@ -53,47 +53,50 @@ const maxLessThanMin =
     updateParam("search", search.trim());
   }
 
+  const inputCls = "rounded-xl px-3 py-2 text-sm text-white placeholder:text-slate-500 outline-none focus:ring-1 focus:ring-purple-500 transition-shadow";
+  const inputStyle = { backgroundColor: "var(--surface)", border: "1px solid var(--border)" };
+
   return (
     <div className="flex flex-col gap-3">
       <form onSubmit={onSearchSubmit} className="flex gap-2">
         <input
-          className="border rounded px-3 py-2 flex-1 min-w-0"
+          className={`${inputCls} flex-1 min-w-0`}
+          style={inputStyle}
           placeholder="Search title…"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <button className="border rounded px-3 py-2 shrink-0">Search</button>
+        <button className="btn-gradient px-4 py-2 text-sm font-medium shrink-0">Search</button>
       </form>
 
       <div className="flex flex-wrap gap-2">
         <select
-          className="border rounded px-3 py-2 flex-1 min-w-30"
+          className={`${inputCls} flex-1 min-w-30`}
+          style={inputStyle}
           value={source}
           onChange={(e) => updateParam("source", e.target.value)}
         >
           <option value="">All sources</option>
           {sources.map((s) => (
-            <option key={s} value={s}>
-              {s}
-            </option>
+            <option key={s} value={s}>{s}</option>
           ))}
         </select>
 
         <select
-          className="border rounded px-3 py-2 flex-1 min-w-30"
+          className={`${inputCls} flex-1 min-w-30`}
+          style={inputStyle}
           value={level}
           onChange={(e) => updateParam("level", e.target.value)}
         >
           <option value="">All levels</option>
           {levels.map((l) => (
-            <option key={l} value={l}>
-              {l}
-            </option>
+            <option key={l} value={l}>{l}</option>
           ))}
         </select>
 
         <input
-          className="border rounded px-3 py-2 w-24"
+          className={`${inputCls} w-24`}
+          style={inputStyle}
           placeholder="Min $"
           value={minText}
           onChange={(e) => setMinText(e.target.value)}
@@ -101,7 +104,8 @@ const maxLessThanMin =
         />
 
         <input
-          className="border rounded px-3 py-2 w-24"
+          className={`${inputCls} w-24`}
+          style={inputStyle}
           placeholder="Max $"
           value={maxText}
           onChange={(e) => setMaxText(e.target.value)}
@@ -110,7 +114,7 @@ const maxLessThanMin =
       </div>
 
       {maxLessThanMin && (
-        <p className="text-sm text-red-600">
+        <p className="text-sm text-red-400">
           Max amount can’t be less than Min amount.
         </p>
       )}

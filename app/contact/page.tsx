@@ -1,21 +1,19 @@
-
 export default function ContactPage() {
-
-
   return (
-    <main className="min-h-screen bg-[#0B2B1E] px-6 py-14">
+    <main className="min-h-screen px-6 py-14" style={{ backgroundColor: "var(--background)" }}>
+
       {/* Heading */}
       <div className="mx-auto max-w-3xl text-center">
         <h1 className="text-4xl md:text-5xl font-extrabold text-white">
           Contact us <span className="align-middle">📬</span>
         </h1>
-
-        <p className="mx-auto mt-5 max-w-lg text-white/80 leading-7">
-          Feel free to reach out using this contact form, or just shoot me a
-          message on{" "}
+        <p className="mx-auto mt-5 max-w-lg leading-7" style={{ color: "var(--text-muted)" }}>
+          Feel free to reach out using this contact form, or just shoot me a message on{" "}
           <a
-            className="text-[#FACC15] underline underline-offset-4 hover:opacity-90"
-            href="#"
+            className="underline underline-offset-4 hover:opacity-80 gradient-text"
+            href="https://www.linkedin.com/in/mousa-abuzar/"
+            target="_blank"
+            rel="noreferrer"
           >
             LinkedIn
           </a>{" "}
@@ -24,35 +22,34 @@ export default function ContactPage() {
       </div>
 
       {/* Form Card */}
-      <div className="mx-auto mt-12 max-w-xl rounded-3xl bg-white/95 p-8 shadow-lg">
+      <div
+        className="mx-auto mt-12 max-w-xl rounded-3xl p-8 shadow-lg"
+        style={{ backgroundColor: "var(--surface)", border: "1px solid var(--border)" }}
+      >
         <form className="space-y-6">
           {/* Name */}
           <div>
-            <label className="block text-sm font-semibold text-[#0B2B1E]">
-              Name
-            </label>
-
+            <label className="block text-sm font-semibold text-white">Name</label>
             <div className="mt-3 grid gap-4 sm:grid-cols-2">
               <div>
-                <label className="block text-xs text-[#0B2B1E]/70">
-                  First Name <span className="text-red-500">(required)</span>
+                <label className="block text-xs" style={{ color: "var(--text-muted)" }}>
+                  First Name <span className="text-red-400">(required)</span>
                 </label>
                 <input
-                  className="mt-2 w-full rounded-2xl border border-[#0B2B1E]/20 bg-white px-4 py-3 text-[#0B2B1E] outline-none
-                             focus:border-[#FACC15] focus:ring-4 focus:ring-[#FACC15]/25"
+                  className="mt-2 w-full rounded-xl px-4 py-3 text-white outline-none text-sm transition-shadow focus:ring-1 focus:ring-purple-500"
+                  style={{ backgroundColor: "var(--surface-2)", border: "1px solid var(--border)" }}
                   type="text"
                   name="firstName"
                   required
                 />
               </div>
-
               <div>
-                <label className="block text-xs text-[#0B2B1E]/70">
-                  Last Name <span className="text-red-500">(required)</span>
+                <label className="block text-xs" style={{ color: "var(--text-muted)" }}>
+                  Last Name <span className="text-red-400">(required)</span>
                 </label>
                 <input
-                  className="mt-2 w-full rounded-2xl border border-[#0B2B1E]/20 bg-white px-4 py-3 text-[#0B2B1E] outline-none
-                             focus:border-[#FACC15] focus:ring-4 focus:ring-[#FACC15]/25"
+                  className="mt-2 w-full rounded-xl px-4 py-3 text-white outline-none text-sm transition-shadow focus:ring-1 focus:ring-purple-500"
+                  style={{ backgroundColor: "var(--surface-2)", border: "1px solid var(--border)" }}
                   type="text"
                   name="lastName"
                   required
@@ -63,12 +60,12 @@ export default function ContactPage() {
 
           {/* Email */}
           <div>
-            <label className="block text-sm font-semibold text-[#0B2B1E]">
-              Email <span className="text-red-500 text-xs">(required)</span>
+            <label className="block text-sm font-semibold text-white">
+              Email <span className="text-red-400 text-xs">(required)</span>
             </label>
             <input
-              className="mt-2 w-full rounded-2xl border border-[#0B2B1E]/20 bg-white px-4 py-3 text-[#0B2B1E] outline-none
-                         focus:border-[#FACC15] focus:ring-4 focus:ring-[#FACC15]/25"
+              className="mt-2 w-full rounded-xl px-4 py-3 text-white outline-none text-sm transition-shadow focus:ring-1 focus:ring-purple-500"
+              style={{ backgroundColor: "var(--surface-2)", border: "1px solid var(--border)" }}
               type="email"
               name="email"
               required
@@ -77,28 +74,24 @@ export default function ContactPage() {
 
           {/* Message */}
           <div>
-            <label className="block text-sm font-semibold text-[#0B2B1E]">
-              Message <span className="text-red-500 text-xs">(required)</span>
+            <label className="block text-sm font-semibold text-white">
+              Message <span className="text-red-400 text-xs">(required)</span>
             </label>
             <textarea
-              className="mt-2 min-h-[140px] w-full resize-y rounded-2xl border border-[#0B2B1E]/20 bg-white px-4 py-3 text-[#0B2B1E] outline-none
-                         focus:border-[#FACC15] focus:ring-4 focus:ring-[#FACC15]/25"
+              className="mt-2 min-h-[140px] w-full resize-y rounded-xl px-4 py-3 text-white outline-none text-sm transition-shadow focus:ring-1 focus:ring-purple-500"
+              style={{ backgroundColor: "var(--surface-2)", border: "1px solid var(--border)" }}
               name="message"
               required
             />
           </div>
 
           {/* Button */}
-          <button
-            type="submit"
-            className="w-full rounded-2xl bg-[#FACC15] px-5 py-3 font-semibold text-[#0B2B1E]
-                       hover:brightness-95 transition"
-          >
+          <button type="submit" className="btn-gradient w-full py-3 font-semibold text-sm">
             Send
           </button>
 
-          <p className="text-center text-xs text-[#0B2B1E]/60">
-            I’ll get back to you as soon as I can.
+          <p className="text-center text-xs" style={{ color: "var(--text-muted)" }}>
+            I'll get back to you as soon as I can.
           </p>
         </form>
       </div>
