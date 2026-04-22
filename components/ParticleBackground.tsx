@@ -40,9 +40,11 @@ export default function ParticleBackground() {
       const maxR = isMobile() ? 13 : 22;
       const minR = isMobile() ? 8 : 14;
       const radius = Math.random() * maxR + minR;
+      const W = canvas.width;
+      const H = canvas.height;
       return {
-        x: Math.random() * canvas.width,
-        y: randomY ? Math.random() * canvas.height : canvas.height + radius + Math.random() * 200,
+        x: Math.random() * W,
+        y: randomY ? Math.random() * H : H + radius + Math.random() * 200,
         vx: (Math.random() - 0.5) * 0.6,
         vy: -(Math.random() * 0.8 + 0.4),
         radius,
