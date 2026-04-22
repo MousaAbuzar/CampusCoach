@@ -4,16 +4,13 @@ import { useEffect, useRef } from "react";
 const SYMBOLS = ["$", "$", "$", "¢", "%", "$"];
 
 type Coin = {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
+  x: number; y: number;
+  vx: number; vy: number;
   radius: number;
-  angle: number;
-  spin: number;
+  angle: number; spin: number;
   opacity: number;
   symbol: string;
-  gold: number; // hue shift for variety
+  gold: number;
 };
 
 export default function ParticleBackground() {
@@ -25,11 +22,15 @@ export default function ParticleBackground() {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    // Use non-null refs so closures don't lose narrowing
+    const c: HTMLCanvasElement = canvas;
+    const x: CanvasRenderingContext2D = ctx;
+
     const isMobile = () => window.innerWidth < 768;
 
     const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      c.width = window.innerWidth;
+      c.height = window.innerHeight;
     };
     resize();
     window.addEventListener("resize", resize);
@@ -40,11 +41,9 @@ export default function ParticleBackground() {
       const maxR = isMobile() ? 13 : 22;
       const minR = isMobile() ? 8 : 14;
       const radius = Math.random() * maxR + minR;
-      const W = canvas.width;
-      const H = canvas.height;
       return {
-        x: Math.random() * W,
-        y: randomY ? Math.random() * H : H + radius + Math.random() * 200,
+        x: Math.random() * c.width,
+        y: randomY ? Math.random() * c.height : c.height + radius + Math.random() * 200,
         vx: (Math.random() - 0.5) * 0.6,
         vy: -(Math.random() * 0.8 + 0.4),
         radius,
@@ -52,78 +51,69 @@ export default function ParticleBackground() {
         spin: (Math.random() - 0.5) * 0.025,
         opacity: Math.random() * 0.45 + 0.35,
         symbol: SYMBOLS[Math.floor(Math.random() * SYMBOLS.length)],
-        gold: Math.random() * 30 - 10, // slight hue variation
+        gold: Math.random() * 30 - 10,
       };
     }
 
     const coins: Coin[] = Array.from({ length: COIN_COUNT }, () => makeCoin(true));
 
-    let animId: number;
+    function drawCoin(coin: Coin) {
+      x.save();
+      x.translate(coin.x, coin.y);
+      x.rotate(coin.angle);
+      x.globalAlpha = coin.opacity;
 
-    function drawCoin(c: Coin) {
-      ctx!.save();
-      ctx!.translate(c.x, c.y);
-      ctx!.rotate(c.angle);
-      ctx!.globalAlpha = c.opacity;
+      const glow = x.createRadialGradient(0, 0, coin.radius * 0.5, 0, 0, coin.radius * 2.5);
+      glow.addColorStop(0, "rgba(255,200,44,0.35)");
+      glow.addColorStop(1, "rgba(255,200,44,0)");
+      x.beginPath();
+      x.arc(0, 0, coin.radius * 2.5, 0, Math.PI * 2);
+      x.fillStyle = glow;
+      x.fill();
 
-      // Outer glow
-      const glow = ctx!.createRadialGradient(0, 0, c.radius * 0.5, 0, 0, c.radius * 2.5);
-      glow.addColorStop(0, `rgba(255,200,44,0.35)`);
-      glow.addColorStop(1, `rgba(255,200,44,0)`);
-      ctx!.beginPath();
-      ctx!.arc(0, 0, c.radius * 2.5, 0, Math.PI * 2);
-      ctx!.fillStyle = glow;
-      ctx!.fill();
+      const body = x.createRadialGradient(-coin.radius * 0.3, -coin.radius * 0.3, 0, 0, 0, coin.radius);
+      body.addColorStop(0, `hsl(${44 + coin.gold}, 100%, 72%)`);
+      body.addColorStop(0.6, `hsl(${38 + coin.gold}, 95%, 52%)`);
+      body.addColorStop(1, `hsl(${30 + coin.gold}, 90%, 35%)`);
+      x.beginPath();
+      x.arc(0, 0, coin.radius, 0, Math.PI * 2);
+      x.fillStyle = body;
+      x.fill();
 
-      // Coin body gradient (gives 3D feel)
-      const body = ctx!.createRadialGradient(-c.radius * 0.3, -c.radius * 0.3, 0, 0, 0, c.radius);
-      body.addColorStop(0, `hsl(${44 + c.gold}, 100%, 72%)`);
-      body.addColorStop(0.6, `hsl(${38 + c.gold}, 95%, 52%)`);
-      body.addColorStop(1, `hsl(${30 + c.gold}, 90%, 35%)`);
-      ctx!.beginPath();
-      ctx!.arc(0, 0, c.radius, 0, Math.PI * 2);
-      ctx!.fillStyle = body;
-      ctx!.fill();
+      x.strokeStyle = `hsl(${36 + coin.gold}, 80%, 30%)`;
+      x.lineWidth = coin.radius * 0.08;
+      x.stroke();
 
-      // Coin rim
-      ctx!.strokeStyle = `hsl(${36 + c.gold}, 80%, 30%)`;
-      ctx!.lineWidth = c.radius * 0.08;
-      ctx!.stroke();
+      x.beginPath();
+      x.arc(0, 0, coin.radius * 0.75, 0, Math.PI * 2);
+      x.strokeStyle = "rgba(255,255,255,0.2)";
+      x.lineWidth = coin.radius * 0.06;
+      x.stroke();
 
-      // Inner circle detail
-      ctx!.beginPath();
-      ctx!.arc(0, 0, c.radius * 0.75, 0, Math.PI * 2);
-      ctx!.strokeStyle = `rgba(255,255,255,0.2)`;
-      ctx!.lineWidth = c.radius * 0.06;
-      ctx!.stroke();
+      x.fillStyle = `hsl(${30 + coin.gold}, 80%, 28%)`;
+      x.font = `bold ${Math.round(coin.radius * 1.1)}px system-ui, sans-serif`;
+      x.textAlign = "center";
+      x.textBaseline = "middle";
+      x.fillText(coin.symbol, 0, 1);
 
-      // Symbol
-      ctx!.fillStyle = `hsl(${30 + c.gold}, 80%, 28%)`;
-      ctx!.font = `bold ${Math.round(c.radius * 1.1)}px system-ui, sans-serif`;
-      ctx!.textAlign = "center";
-      ctx!.textBaseline = "middle";
-      ctx!.fillText(c.symbol, 0, 1);
-
-      ctx!.restore();
+      x.restore();
     }
 
+    let animId: number;
+
     function animate() {
-      ctx!.clearRect(0, 0, canvas.width, canvas.height);
+      x.clearRect(0, 0, c.width, c.height);
 
-      for (const c of coins) {
-        c.x += c.vx;
-        c.y += c.vy;
-        c.angle += c.spin;
+      for (const coin of coins) {
+        coin.x += coin.vx;
+        coin.y += coin.vy;
+        coin.angle += coin.spin;
 
-        // Respawn at bottom when off top
-        if (c.y < -c.radius * 3) {
-          Object.assign(c, makeCoin(false));
-        }
-        // Bounce horizontal edges
-        if (c.x < -c.radius) c.x = canvas.width + c.radius;
-        if (c.x > canvas.width + c.radius) c.x = -c.radius;
+        if (coin.y < -coin.radius * 3) Object.assign(coin, makeCoin(false));
+        if (coin.x < -coin.radius) coin.x = c.width + coin.radius;
+        if (coin.x > c.width + coin.radius) coin.x = -coin.radius;
 
-        drawCoin(c);
+        drawCoin(coin);
       }
 
       animId = requestAnimationFrame(animate);
