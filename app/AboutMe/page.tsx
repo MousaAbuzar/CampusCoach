@@ -21,7 +21,7 @@ export default function AboutMePage() {
 
           {/* Right: text */}
           <div>
-            <h1 className="text-5xl font-extrabold tracking-tight text-emerald-950">
+            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-emerald-950">
               About Me
             </h1>
 
@@ -29,7 +29,7 @@ export default function AboutMePage() {
               Helping Students Achieve Their Educational Dreams
             </p>
 
-            <div className="mt-25 max-w-xl rounded-2xl bg-white/70 p-6 ring-1 ring-emerald-950/50 backdrop-blur-md shadow-2xl shadow-emerald-950/10">
+            <div className="mt-6 max-w-xl rounded-2xl bg-white/70 p-6 ring-1 ring-emerald-950/50 backdrop-blur-md shadow-2xl shadow-emerald-950/10">
                 <p className="leading-7 text-emerald-950/80">
                     Welcome! I'm passionate about making higher education accessible to all
                     students, regardless of their financial background. Through this platform, I
@@ -40,19 +40,19 @@ export default function AboutMePage() {
 
 
             {/* Badges */}
-            <div className="mt-8 flex items-center gap-3 flex-nowrap">
-              <span className="inline-flex items-center gap-2 rounded-full bg-emerald-800 px-4 py-2 text-xs font-semibold text-white shadow-sm whitespace-nowrap flex-none transition-colors duration-150 hover:bg-emerald-900">
-                <span className="shrink-0">🎓</span>
+            <div className="mt-8 flex items-center gap-3 flex-wrap">
+              <span className="inline-flex items-center gap-2 rounded-full bg-emerald-800 px-4 py-2 text-xs font-semibold text-white shadow-sm transition-colors duration-150 hover:bg-emerald-900">
+                <span>🎓</span>
                 Education Advocate
               </span>
 
-              <span className="inline-flex items-center gap-2 rounded-full bg-[#f4b400] px-4 py-2 text-xs font-semibold text-emerald-950 shadow-sm whitespace-nowrap flex-none transition-colors duration-150 hover:bg-[#d89f00]">
-                <span className="shrink-0">💡</span>
+              <span className="inline-flex items-center gap-2 rounded-full bg-[#f4b400] px-4 py-2 text-xs font-semibold text-emerald-950 shadow-sm transition-colors duration-150 hover:bg-[#d89f00]">
+                <span>💡</span>
                 Scholarship Expert
               </span>
 
-              <span className="inline-flex items-center gap-2 rounded-full bg-emerald-800 px-4 py-2 text-xs font-semibold text-white shadow-sm whitespace-nowrap flex-none transition-colors duration-150 hover:bg-emerald-900">
-                <span className="shrink-0">🧑‍🎓</span>
+              <span className="inline-flex items-center gap-2 rounded-full bg-emerald-800 px-4 py-2 text-xs font-semibold text-white shadow-sm transition-colors duration-150 hover:bg-emerald-900">
+                <span>🧑‍🎓</span>
                 Student Mentor
               </span>
             </div>
